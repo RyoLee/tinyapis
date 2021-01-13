@@ -15,17 +15,17 @@ debug = ("1" == cp.get('main', 'debug'))
 mainpw = cp.get('main', 'password')
 
 
-@app.route('/')
+@app.route('/', methods=['post', 'get'])
 def usage():
     abort(Response('https://github.com/RyoLee/tinyapis'))
 
 
-@app.route('/ping')
+@app.route('/ping', methods=['post', 'get'])
 def ping():
     return 'pong'
 
 
-@app.route('/str2md5')
+@app.route('/str2md5', methods=['post', 'get'])
 def getMD5():
     s0 = request.form.to_dict()["str"]
     m = hashlib.md5()
@@ -33,19 +33,19 @@ def getMD5():
     return m.hexdigest()
 
 
-@app.route('/2lowercase')
+@app.route('/2lowercase', methods=['post', 'get'])
 def getLowerCase():
     s0 = request.form.to_dict()["str"]
     return s0.lower()
 
 
-@app.route('/2uppercase')
+@app.route('/2uppercase', methods=['post', 'get'])
 def getUpperCase():
     s0 = request.form.to_dict()["str"]
     return s0.upper()
 
 
-@app.route('/gettoken')
+@app.route('/gettoken', methods=['post', 'get'])
 def getTokens():
     p = request.form.to_dict()["key"]
     ts = str(int(time.time())//30)
@@ -54,9 +54,9 @@ def getTokens():
     return m.hexdigest()
 
 
-@app.route('/timestamp')
+@app.route('/timestamp', methods=['post', 'get'])
 def getTimestamp():
-    return int(time.time())
+    return str(int(time.time()))
 
 
 if __name__ == '__main__':
