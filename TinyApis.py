@@ -40,7 +40,7 @@ def getLowerCase():
 
 
 @app.route('/2uppercase')
-def getLowerCase():
+def getUpperCase():
     s0 = request.form.to_dict()["str"]
     return s0.upper()
 
